@@ -1,0 +1,22 @@
+{
+  "name": "holidays",
+  "version": "0.1.0",
+  "authors": [
+    "Geoffroy Empain <geoffroy@eempain.eu> (http://empain.eu)"
+  ],
+  "description": "Holidays plugin for Moment.js.",
+  "keywords": [
+    "momentjs",
+    "moment",
+    "holidays",
+    "moment-holidays"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
