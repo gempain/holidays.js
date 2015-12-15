@@ -59,6 +59,7 @@ All functions use the country code set at the time of call. Therefore, changing 
 v1.0.0
   * All functions except `countryCode()` are asynchronous
   * Adds QUnit testing
+  
 v0.1.0
   * Check if day is a holiday
   * List moment holidays
