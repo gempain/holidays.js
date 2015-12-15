@@ -1,5 +1,5 @@
 # Holidays.js
-A Moment.js plugin that enables holiday support.
+Holiday support for Moment.js.
 ## Installation
 ### Bower
 ```
@@ -13,32 +13,41 @@ Just include `Holidays.js` in your page **after** you have loaded `Moment.js`.
 ```
 ## Usage
 ### `.holiday()` and `.holidays()`
-If you want to tell if a moment is a holiday, use `.holiday()`.
+Tells if a moment is a holiday. This asynchronous function takes two callbacks as arguments: the first will be called on success and the second on failure.
 ```
-var isHoliday = moment('2015-12-25', 'YYYY-MM-DD').holiday(); // true
+moment('2015-12-25', 'YYYY-MM-DD').holiday(
+    function(result){
+        console.log(result); // true
+    },
+    function(error){
+        console.log(error); // IO error, JSON parse error...
+    }
+);
 ```
-If you want to list the names of a moment's holidays, use `.holidays()`.
+Lists the names of a moment's holidays. This asynchronous function takes two callbacks as arguments: the first will be called on success and the second on failure.
 ```
-var christmas = moment('2015-12-25', 'YYYY-MM-DD').holidays(); // ["Christmas"]
+moment('2015-12-25', 'YYYY-MM-DD').holidays(
+    function(result){
+        console.log(result); // ["Christmas"]
+    },
+    function(error){
+        console.log(error); // IO error, JSON parse error...
+    }
+);
 ```
-### Country code
-By default, dates retrieved correspond to the US holiday calendar, but you can change this setting using `.countryCode()`.
+### Country code & language
+Holiday names, dates and quantity vary between countries. Each query to the web service requires specifying a country code for which to retrieve the holidays. Holiday names are returned in the language which corresponds to the country code set at the moment of the function call (e.g. English for `US`, French for `FR`...). This setting defaults to `US`.
 #### Get
+To get the current country code:
 ```
-var country_code = moment().countryCode();
+var country_code = moment().countryCode(); // Default is 'US'.
 ```
 #### Set
+To switch country code:
 ```
 moment().countryCode('FR');
 ```
-Holiday names will be displayed in the native language corresponding to the country code (e.g. English for `US`, French for `FR`...).
-### Cache and preloading
-This plugin uses a web service to retrieve holidays by year using **synchroneous** HTTP GET requests. To avoid unnecessary requests and blocking time due to network delays, `Holidays.js` caches holidays.
-
-Though it will create an additional initial loading time, you can ask `Holidays.js` to preload holidays for certain years. To do so, call `.preloadHolidays()` providing an array of years.
-```
-moment().preloadHolidays([2015,2016]);
-```
+All functions use the country code set at the time of call. Therefore, changing it before the function finishes won't have any effect on previous calls. 
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
@@ -47,6 +56,9 @@ moment().preloadHolidays([2015,2016]);
 5. Submit a pull request :D
 
 ## History
+v1.0.0
+  * All functions except `countryCode()` are asynchronous
+  * Adds QUnit testing
 v0.1.0
   * Check if day is a holiday
   * List moment holidays
@@ -57,6 +69,6 @@ v0.1.0
 ## Credits
 [Geoffroy EMPAIN](http://empain.eu)
 
-[Josh Sherman](http://joshtronic.com/?ref=holidayapi) for its holiday API
+[Josh Sherman](http://joshtronic.com/?ref=holidayapi) for his holiday API
 ## License
 MIT
