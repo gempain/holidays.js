@@ -12,7 +12,7 @@ Just include `Holidays.js` in your page **after** you have loaded `Moment.js`.
 <script src="Holidays.js" type="text/javascript"></script>
 ```
 ## Usage
-### `.holiday()` and `.holidays()`
+#### `.holiday()`
 Tells if a moment is a holiday. This asynchronous function takes two callbacks as arguments: the first will be called on success and the second on failure.
 ```
 moment('2015-12-25', 'YYYY-MM-DD').holiday(
@@ -24,6 +24,7 @@ moment('2015-12-25', 'YYYY-MM-DD').holiday(
     }
 );
 ```
+#### `.holidays()`
 Lists the names of a moment's holidays. This asynchronous function takes two callbacks as arguments: the first will be called on success and the second on failure.
 ```
 moment('2015-12-25', 'YYYY-MM-DD').holidays(
@@ -47,7 +48,7 @@ To switch country code:
 ```
 moment().countryCode('FR');
 ```
-All functions use the country code set at the time of call. Therefore, changing it before the function finishes won't have any effect on previous calls. 
+All functions use the country code set at the time of call. Therefore, changing it will not affect previous calls. 
 ## Contributing
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
@@ -59,6 +60,7 @@ All functions use the country code set at the time of call. Therefore, changing 
 v1.0.0
   * All functions except `countryCode()` are asynchronous
   * Adds QUnit testing
+  * --Preload years--
   
 v0.1.0
   * Check if day is a holiday
