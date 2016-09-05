@@ -36,7 +36,7 @@
      * Holidays web service url.
      * @type {string}
      */
-    var feed = "http://holidayapi.com/v1/holidays?";
+    var feed = "https://holidayapi.com/v1/holidays?";
 
     /**
      * Contains holidays (as arrays of objects) for certain years (as keys).
@@ -52,6 +52,22 @@
      * @type {string}
      */
     var country_code = "US";
+
+    /**
+     * Holidays web service requires an API key to make a valid request.
+     * Request an API key at http://holidayapi.com
+     * Before requiring Holidays.js, add your API like so:
+     *
+     * <script type="text/javascript">
+     *   const holidays_api_key="9f4c25e6-81ba-48b9-FAKE-1ee8c24fd928"
+     * </script>
+     *
+     * The Holidays service will return a 401 Unauthorized error if a key
+     * is not provided.
+     * @see <a href="http://holidayapi.com">http://holidayapi.com</a>
+     * @type {UUID}
+    */
+    const api_key = holidays_api_key;
 
     /**
      * Pushes an object containing both successCallback and failureCallback
@@ -140,7 +156,7 @@
      *      error: JS error object. May be IO error, JSON error...
      */
     function cacheYear(year, countryCode, success, failure) {
-        asyncHttpGet(feed+'country='+countryCode+'&year='+year, function(response){
+        asyncHttpGet(feed+'country='+countryCode+'&year='+year+'&key='+api_key, function(response){
             var json = JSON && JSON.parse(response) || $.parseJSON(response);
             if (json.error == null) {
                 createCacheEntry(year, countryCode, json.holidays, false);
@@ -181,7 +197,6 @@
         return names;
     }
 
-    
     function holidays(momentObject, countryCode, success, failure) {
         var year = momentObject.year();
 
