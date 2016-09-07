@@ -117,7 +117,7 @@
      * @param success Callback called when query has finished with success.
      * Signature:
      *      function(result)
-     * Aruments:
+     * Arguments:
      *      result: Http response.
      * @param failure Callback called when query has finished with error.
      * Signature

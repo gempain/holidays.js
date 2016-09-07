@@ -6,8 +6,12 @@ Holiday support for Moment.js.
 bower install holidays
 ```
 ### Browser
-Just include `Holidays.js` in your page **after** you have loaded `Moment.js`.
+1. Get your API key at http://holidayapi.com.
+2. Declare your API key and include `Holidays.js` in your page **after** you have loaded `Moment.js`.
 ```
+<script type="text/javascript">
+	const holidays_api_key="9f4c25e6-81ba-48b9-FAKE-1ee8c24fd928"
+</script>
 <script src="moment.js" type="text/javascript"></script>
 <script src="Holidays.js" type="text/javascript"></script>
 ```
@@ -57,6 +61,10 @@ All functions use the country code set at the time of call. Therefore, changing 
 5. Submit a pull request :D
 
 ## History
+v1.0.1
+  * Adds https support
+  * Adds API key support (required as of July 2016)
+  
 v1.0.0
   * All functions except `countryCode()` are asynchronous
   * Adds QUnit testing
